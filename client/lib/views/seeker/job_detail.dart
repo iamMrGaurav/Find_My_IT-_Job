@@ -618,6 +618,7 @@ class _JobDetailPageState extends State<JobDetailPage> {
                                           isCompany: widget.isCompany,
                                           title: widget.profile.companyName,
                                           imagepath: widget.profile.imagePath,
+                                          receiverName: widget.profile.userName,
                                         ));
                                       },
                                       icon: const Icon(

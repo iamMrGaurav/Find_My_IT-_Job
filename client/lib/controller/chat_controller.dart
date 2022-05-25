@@ -1,8 +1,11 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:fmij/controller/login_controller.dart';
+import 'package:fmij/main.dart';
 import 'package:fmij/model/message.dart';
 import 'package:fmij/utilities/global.dart';
 import 'package:get/state_manager.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -15,10 +18,25 @@ class ChatController extends GetxController {
     "transports": ["websocket"],
     "autoConnect": true,
   });
+  // Timer? timer;
+  int? seekerId;
+  int? companyId;
 
   @override
   void onInit() {
     super.onInit();
+    activate();
+    // timer = Timer.periodic(const Duration(seconds: 2), (timer) {
+    //   fetchChatScreen(seekerId, companyId);
+    // });
+  }
+
+  String? uid;
+  activate() async {
+    SharedPreferences pfs = await SharedPreferences.getInstance();
+    uid = pfs.getString("uName");
+    await fetchChatScreen(companyId, seekerId);
+
     socketFunction();
   }
 
@@ -26,11 +44,11 @@ class ChatController extends GetxController {
     socket.onConnect((_) {
       socket.emit('msg', 'test');
     });
+
     socket.emit(
         "login",
         jsonEncode({
-          //id pathauni
-          "userName": 26,
+          "userName": uid,
         }));
     socket.on("receive-message", (data) {
       Message message = Message(
@@ -41,12 +59,12 @@ class ChatController extends GetxController {
           sender: data["sender"]);
       chatScreen.add(message);
       chatScreen.refresh();
-      print(chatScreen.length);
+      fetchChatScreen(companyId, seekerId);
       update();
     });
   }
 
-  sendMessages(sender, companyId, seekerId) async {
+  sendMessages(int sender, int companyId, int seekerId, receiverId) async {
     try {
       var url =
           "$api/company/sendMessage/?token=${LoginController.authenticateToken}";
@@ -58,23 +76,28 @@ class ChatController extends GetxController {
         "message_date": DateTime.now().toString()
       };
       var data = await http.post(Uri.parse(url), body: message);
+      print(data.body);
+      print(data.statusCode);
       if (data.statusCode == 200) {
         Message message = Message(
-            companyId: 2,
-            seekerId: 15,
+            companyId: companyId,
+            seekerId: seekerId,
             textMessage: sendMessage.text,
             sender: sender.toString(),
             messageDate: DateTime.now());
-        chatScreen.add(message);
+
+        print("i got msg");
+        print(receiverId.toString());
         socket.emit(
             "sendMessage",
             jsonEncode({
-              "receiverName": "test_user",
-              "companyId": 2,
-              "seekerId": 15,
+              "receiverName": receiverId.toString(),
+              "companyId": companyId,
+              "seekerId": seekerId,
               "message": sendMessage.text,
               "sender": sender.toString()
             }));
+        chatScreen.add(message);
         chatScreen.refresh();
         update();
         sendMessage.clear();
@@ -88,8 +111,6 @@ class ChatController extends GetxController {
 
   fetchChatScreen(companyId, seekerId) async {
     try {
-      print(companyId);
-      print(seekerId);
       var url =
           "$api/company/getMessage/?token=${LoginController.authenticateToken}";
       var data = await http.post(Uri.parse(url), body: {
@@ -98,10 +119,13 @@ class ChatController extends GetxController {
       });
 
       var result = jsonDecode(data.body);
+
       chatScreen.value = messageFromJson(jsonEncode(result["data"]));
       return chatScreen;
     } catch (e) {
       print(e);
+    } finally {
+      update();
     }
   }
 }

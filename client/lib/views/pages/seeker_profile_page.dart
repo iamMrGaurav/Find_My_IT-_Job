@@ -423,6 +423,7 @@ class SeekerProfilePage extends StatelessWidget {
                             isCompany: "yes",
                             imagepath: profileController.imagePath,
                             title: profileController.firstName,
+                            receiverName: profileController.userName,
                           ));
                         },
                         child: Container(

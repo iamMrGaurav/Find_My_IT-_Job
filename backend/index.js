@@ -61,17 +61,13 @@ var users = {};
 io.on("connection", (socket) => {
   socket.on("login", (user) => {
     user = JSON.parse(user);
-    users[socket.id] = user.userName;
-    console.log(`${user.userName} Logged In`);
-  });
-  //on user disconnects
-  socket.on("disconnect", () => {
-    console.log(`${users[socket.id]} Disconnected`);
-    delete users[socket.id];
+    users[socket.id.toString()] = user.userName;
+    console.log(`${user.userName} Logged In ${socket.id}`);
   });
 
   socket.on("sendMessage", (data) => {
     data = JSON.parse(data);
+
     let receiver = data.receiverName;
     let companyId = data.companyId;
     let seekerId = data.seekerId;
@@ -82,6 +78,10 @@ io.on("connection", (socket) => {
       let receiverId = Object.keys(users).find(
         (key) => users[key] === receiver
       );
+      console.log(data);
+
+      console.log(users);
+      console.log(receiverId);
 
       let isReceiverActive = false;
       if (receiverId) isReceiverActive = true;
@@ -97,6 +97,10 @@ io.on("connection", (socket) => {
         io.to(receiverId).emit("receive-message", messageResponse);
       }
     }
+  });
+  socket.on("disconnect", () => {
+    console.log(`${users[socket.id]} Disconnected`);
+    delete users[socket.id];
   });
 });
 

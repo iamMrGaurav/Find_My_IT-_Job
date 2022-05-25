@@ -58,8 +58,6 @@ class LoginController extends GetxController {
     var data = jsonDecode(response.body);
 
     if (response.statusCode == 200) {
-      LoginController.token = data["token"];
-      print(LoginController.token);
       Fluttertoast.showToast(
           msg: data["message"],
           toastLength: Toast.LENGTH_LONG,
@@ -90,7 +88,6 @@ class LoginController extends GetxController {
     var data = jsonDecode(response.body);
     if (response.statusCode == 200) {
       if (data["message"] == "company") {
-        LoginController.userID = data["user_id"].toString();
         email.clear();
         password.clear();
         Get.to(FirstSignUp(
@@ -105,6 +102,8 @@ class LoginController extends GetxController {
         if (data["company_id"] == null) {
           SharedPreferences prefs = await SharedPreferences.getInstance();
           prefs.setString("token", data["token"]);
+          prefs.setString("uName", data["user_name"]);
+
           authenticateToken = prefs.getString("token").toString();
           MainScreen.seekerId = data["seeker_id"].toString();
           Get.to(SeekerHome());
@@ -121,6 +120,11 @@ class LoginController extends GetxController {
         } else {
           SharedPreferences prefs = await SharedPreferences.getInstance();
           prefs.setString("token", data["token"]);
+          prefs.setString("uName", data["user_name"]);
+
+          print("Below is company user id");
+          print(data["user_id"]);
+
           authenticateToken = prefs.getString("token").toString();
           MainScreen.companyId = data["company_id"].toString();
           Fluttertoast.showToast(

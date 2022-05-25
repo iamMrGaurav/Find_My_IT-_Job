@@ -40,8 +40,10 @@ async function getLoginDetails(req, res) {
               message: `${username},You have login successfully`,
               username: data[0].user_name,
               token: token,
+              user_id: data[0].user_id,
               company_id: company_id[0]["comapny_id"],
               role: data[0].role,
+              user_name: data[0].user_name,
               status: "success",
             });
           } else {
@@ -75,6 +77,7 @@ async function getLoginDetails(req, res) {
               seeker_id: seeker_id[0]["seeker_id"],
               role: data[0].role,
               user_id: data[0].user_id,
+              user_name: data[0].user_name,
               status: "success",
             });
           } else {

@@ -64,10 +64,12 @@ class _MainScreenState extends State<MainScreen> {
 
           if (jsonData["data"]["role"] == 1) {
             MainScreen.companyId = jsonData["data"]["company_id"].toString();
+
             LoginController.authenticateToken = token;
             Get.to(CompanyPage());
           } else {
             MainScreen.seekerId = jsonData["data"]["seeker_id"].toString();
+
             LoginController.authenticateToken = token;
             Get.to(SeekerHome());
           }
