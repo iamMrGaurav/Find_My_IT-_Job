@@ -1,0 +1,22 @@
+const { Router } = require("express");
+const express = require("express");
+const router = express.Router();
+const adminController = require("../controllers/admin.js");
+const { route } = require("./login.js");
+const companyController = require("../controllers/company_side.js");
+
+router.get("/", adminController.getTotalCompanies);
+router.get("/companies_details", adminController.getCompaniesDetails);
+router.post("/search_companies", adminController.searchCompaniesDetail);
+router.get("/job_position", adminController.getJobPosition);
+router.post("/job_position", adminController.addJobPosition);
+router.get("/fetch_post_job", adminController.getPostJob);
+router.post("/get_search_job", adminController.getSearchJob);
+router.post("/filter_data", adminController.filterData);
+router.post("/update_job_position", adminController.updateJobPosition);
+router.post("/delete_job_position", adminController.deleteJobPosition);
+router.get("/get_transaction", adminController.getTransactionDetail);
+router.post("/search_transaction", adminController.searchTransactionDetail);
+router.get("/get_seekerDetails", companyController.getSeekerDetail);
+router.post("/search_seeker", companyController.searchSeeker);
+module.exports = router;

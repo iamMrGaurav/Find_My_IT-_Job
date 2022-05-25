@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "161193699852",
+    "project_id": "finalyearproject-7fc46",
+    "storage_bucket": "finalyearproject-7fc46.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:161193699852:android:43e6b373e7649a737f1c29",
+        "android_client_info": {
+          "package_name": "com.teispace.fmij"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "161193699852-6gggsh4921nei217f59621od99ec41t6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.teispace.fmij",
+            "certificate_hash": "3a5c7e3c437eba3e09cc640ed67a6ad002a98bde"
+          }
+        },
+        {
+          "client_id": "161193699852-d88lvgui7r111p35cck96pgvqri9gtb9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.teispace.fmij",
+            "certificate_hash": "e021d096f4f9b0df4ff49e0236275ee0dd84a9ee"
+          }
+        },
+        {
+          "client_id": "161193699852-ej6tljfcbqil9g1fub2d15tfe283e4qe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBjEz9DKZjZQmIlun7g2k9hzArHdk0ULts"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "161193699852-ej6tljfcbqil9g1fub2d15tfe283e4qe.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
