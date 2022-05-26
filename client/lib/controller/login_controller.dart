@@ -25,7 +25,7 @@ class LoginController extends GetxController {
   static String userID = "";
 
   static String authenticateToken = "";
-
+  static String forgotPassToken = "";
   bool isEye = true;
 
   verify(email, password) async {
@@ -56,7 +56,7 @@ class LoginController extends GetxController {
     });
 
     var data = jsonDecode(response.body);
-
+    LoginController.forgotPassToken = data["token"];
     if (response.statusCode == 200) {
       Fluttertoast.showToast(
           msg: data["message"],
@@ -247,11 +247,12 @@ class LoginController extends GetxController {
   String otp = "";
   var data;
 
-  verifyOtp(token, otp) async {
-    token = LoginController.token;
+  verifyOtp(otp) async {
+    // print("below token");
+    // print(token);
     var url = "$api/forgot_pass/passwordreset/verifyotp";
     var response = await http.post(Uri.parse(url), body: {
-      "token": token,
+      "token": LoginController.forgotPassToken,
       "otp": otp,
     });
     var data = jsonDecode(response.body);

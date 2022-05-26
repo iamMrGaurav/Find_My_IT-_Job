@@ -105,8 +105,7 @@ class OtpScreen extends StatelessWidget {
                       width: MediaQuery.of(context).size.width * 0.3,
                       child: ElevatedButton(
                           onPressed: () {
-                            controller.verifyOtp(
-                                LoginController.token, controller.otp);
+                            controller.verifyOtp(controller.otp);
                           },
                           style: ElevatedButton.styleFrom(primary: kPurple),
                           child: const Text(

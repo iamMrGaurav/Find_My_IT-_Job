@@ -30,7 +30,7 @@ class OtherCompaniesPost extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Expanded(
-                  flex: 2,
+                  flex: 3,
                   child: Container(
                     margin: const EdgeInsets.only(left: 10),
                     decoration: BoxDecoration(
@@ -95,6 +95,7 @@ class OtherCompaniesPost extends StatelessWidget {
                   ),
                 ),
                 Expanded(
+                  flex: 1,
                   child: GestureDetector(
                     onTap: () {
                       Get.bottomSheet(
@@ -105,8 +106,8 @@ class OtherCompaniesPost extends StatelessWidget {
                     },
                     child: Container(
                       margin: const EdgeInsets.only(
-                        left: 30,
-                        right: 60,
+                        left: 20,
+                        right: 30,
                       ),
                       height: 45,
                       decoration: BoxDecoration(

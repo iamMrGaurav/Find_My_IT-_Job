@@ -380,7 +380,7 @@ class ProfilePage extends StatelessWidget {
                       ],
                     ),
                     const SizedBox(
-                      height: 50,
+                      height: 90,
                     ),
                     getController.companyProfile[0].membershipName == "premium"
                         ? const SizedBox()
@@ -389,7 +389,7 @@ class ProfilePage extends StatelessWidget {
                             children: [
                               SizedBox(
                                 height: 46,
-                                width: MediaQuery.of(context).size.width * 0.39,
+                                width: MediaQuery.of(context).size.width * 0.49,
                                 child: ElevatedButton(
                                   child: const Text(
                                     "Be a member",

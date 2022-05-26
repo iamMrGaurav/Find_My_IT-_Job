@@ -426,7 +426,7 @@ class SeekerProfile extends StatelessWidget {
                       children: [
                         SizedBox(
                           height: 36,
-                          width: MediaQuery.of(context).size.width * 0.30,
+                          width: MediaQuery.of(context).size.width * 0.34,
                           child: ElevatedButton(
                             child: const Text(
                               "View CV",
@@ -464,15 +464,14 @@ class SeekerProfile extends StatelessWidget {
                           ),
                         ),
                         SizedBox(
-                          height: 36,
-                          width: MediaQuery.of(context).size.width * 0.34,
+                          height: 40,
+                          width: MediaQuery.of(context).size.width * 0.44,
                           child: ElevatedButton(
                             child: const Text(
                               "Edit Profile",
                               style: TextStyle(
                                 fontSize: 18,
                                 color: Colors.white,
-                                letterSpacing: 1.1,
                               ),
                             ),
                             style: ButtonStyle(
