@@ -295,7 +295,7 @@ async function getSearchJobLanguages(job_position) {
 async function updateJobPosition(job_position_id, job_position_name) {
   /*UPDATE job_position SET job_position_name='' WHERE job_position_id = */
   let query = `UPDATE job_position SET job_position_name='${job_position_name}' WHERE job_position_id =${job_position_id}`;
-  console.log(query);
+
   return new Promise((resolve, reject) => {
     connection.query(query, (err, result) => {
       if (err) {
@@ -333,13 +333,12 @@ async function getTransactionDetail() {
   INNER JOIN district ON
   company.district_id = district.district_id
   WHERE membership.membership_name = "premium"`;
-  console.log(query);
+
   return new Promise((resolve, reject) => {
     connection.query(query, (err, result) => {
       if (err) {
         reject(err);
       } else {
-        console.log(result);
         resolve(result);
       }
     });
@@ -360,13 +359,12 @@ async function searchTransactionDetail(companyName) {
   company.district_id = district.district_id
   WHERE membership.membership_name = "premium" 
   AND company.company_name LIKE "${companyName}%"`;
-  console.log(query);
+
   return new Promise((resolve, reject) => {
     connection.query(query, (err, result) => {
       if (err) {
         reject(err);
       } else {
-        console.log(result);
         resolve(result);
       }
     });

@@ -5,10 +5,11 @@ async function setupProfile(req, res) {
   let imagePath = req.file.path;
 
   console.log(req.body.company_name);
-
+  console.log(req.body.user_id);
   const userStatus = await setupProfileModel.isCompanyUserPresent(
     req.body.user_id
   );
+
   if (userStatus.length > 0) {
     res.status(400);
     res.json({

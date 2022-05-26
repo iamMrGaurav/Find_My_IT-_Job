@@ -186,6 +186,13 @@ async function getPostJob(req, res) {
             return jb;
           }),
         });
+
+        console.log(
+          postJobDetails.map((jb) => {
+            jb[`languages`] = ln[jb.job_id];
+            return jb;
+          })
+        );
       } else {
         res.status(400);
         res.send({
@@ -462,7 +469,7 @@ async function filterData(req, res) {
   var district = req.body.district;
   var userDate = req.body.user_date;
   var expiredStatus = req.body.is_expired;
-  console.log(expiredStatus);
+
   if (expiredStatus == "Choose expired") {
     expiredStatus = "";
   } else if (expiredStatus == "expired") {
@@ -470,7 +477,7 @@ async function filterData(req, res) {
   } else {
     expiredStatus = "AND Date(expired_date) > Date(NOW())";
   }
-  console.log(expiredStatus);
+
   try {
     if (
       jobType != "Select jobType" &&
@@ -578,8 +585,6 @@ async function filterData(req, res) {
       district == "Select district" &&
       jobType == "Select jobType"
     ) {
-      console.log("This Week");
-
       var postJobDetails = await adminModelFilter.filterByWeekly(
         jobPosition,
         expiredStatus
@@ -718,12 +723,6 @@ function SendJson(postJobDetails, postJobLanguage, res) {
           return jb;
         }),
       });
-      console.log(
-        postJobDetails.map((jb) => {
-          jb[`languages`] = ln[jb.job_id];
-          return jb;
-        })
-      );
     } else {
       res.status(400);
       res.json({
@@ -742,7 +741,6 @@ function SendJson(postJobDetails, postJobLanguage, res) {
 
 async function updateJobPosition(req, res) {
   try {
-    console.log(req.body);
     var job_position_id = req.body.job_position_id;
     var job_position_name = req.body.job_position_name;
 
@@ -751,7 +749,7 @@ async function updateJobPosition(req, res) {
         job_position_id,
         job_position_name
       );
-      console.log(response);
+
       if (response.affectedRows > 0) {
         res.status(200);
         res.json({
@@ -777,9 +775,8 @@ async function updateJobPosition(req, res) {
 
 async function deleteJobPosition(req, res) {
   try {
-    console.log("hello");
     var job_position_id = req.body.job_position_id;
-    console.log(job_position_id);
+
     if (job_position_id) {
       var response = await adminModel.deleteJobPosition(job_position_id);
       if (response.affectedRows > 0) {
@@ -808,7 +805,7 @@ async function deleteJobPosition(req, res) {
 async function getTransactionDetail(req, res) {
   try {
     var response = await adminModel.getTransactionDetail();
-    console.log(response);
+
     if (response) {
       res.status(200);
       res.send({
@@ -829,11 +826,10 @@ async function getTransactionDetail(req, res) {
 async function searchTransactionDetail(req, res) {
   try {
     let companyName = req.body.company_name;
-    console.log(companyName);
 
     if (companyName) {
       var response = await adminModel.searchTransactionDetail(companyName);
-      console.log(response);
+
       if (response.length > 0) {
         res.status(200);
         res.json({

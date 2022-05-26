@@ -25,7 +25,6 @@ class Admin_Controller extends GetxController {
   TextEditingController searchSeekerText = TextEditingController();
 
   var initialIndex = 10.obs;
-
   searchCompanies() async {
     try {
       var url = "http://localhost:4000/admin_home/search_companies";
@@ -52,7 +51,9 @@ class Admin_Controller extends GetxController {
             textColor: Colors.white,
             fontSize: 16.0);
       }
-    } catch (exception) {}
+    } catch (exception) {
+      print(exception);
+    }
   }
 
   fetchCompaniesData() async {
@@ -132,7 +133,7 @@ class Admin_Controller extends GetxController {
     });
 
     var data = jsonDecode(response.body);
-    print(data);
+
     if (response.statusCode == 200) {
       Fluttertoast.showToast(
           msg: data["message"],
@@ -162,7 +163,7 @@ class Admin_Controller extends GetxController {
         body: {"userSearchText": searchSeekerText.text},
       );
       var result = jsonDecode(data.body);
-      print(result);
+
       searchSeeker.value = seekerProfileFromJson(jsonEncode(result["data"]));
       return searchSeeker;
     } catch (e) {

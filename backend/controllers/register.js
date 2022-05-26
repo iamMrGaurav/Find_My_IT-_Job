@@ -59,6 +59,7 @@ async function registerUser(req, res) {
         "false",
         2
       );
+
       if ((response.affectedRows = 1)) {
         let token = createToken(user.user_name);
         let mail = await sendMail(user.email_address, token);

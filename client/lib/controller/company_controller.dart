@@ -339,15 +339,6 @@ class CompanyController extends GetxController {
             backgroundColor: Colors.red,
             textColor: Colors.white,
             fontSize: 16.0);
-      } else if (dropdownValue == 'Select job') {
-        Fluttertoast.showToast(
-            msg: "Please select job position",
-            toastLength: Toast.LENGTH_LONG,
-            gravity: ToastGravity.BOTTOM,
-            timeInSecForIosWeb: 1,
-            backgroundColor: Colors.red,
-            textColor: Colors.white,
-            fontSize: 16.0);
       } else {
         var url =
             "$api/company/add_job/?token=${LoginController.authenticateToken}";

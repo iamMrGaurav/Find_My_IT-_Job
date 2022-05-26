@@ -56,8 +56,8 @@ class PostJobController extends GetxController {
     try {
       var url = "http://localhost:4000/admin_home/fetch_post_job";
       var data = await http.get(Uri.parse(url));
-
       var result = jsonDecode(data.body);
+
       postJob.value = postJobFromJson(jsonEncode(result["postJob"]));
       fetchDistrict();
       return postJob;

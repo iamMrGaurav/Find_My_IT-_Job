@@ -12,6 +12,7 @@ import 'package:fmij/views/pages/profile_page.dart';
 import 'package:fmij/views/seeker_list.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'pages/company_postJob.dart';
 
 class CompanyPage extends StatelessWidget {
@@ -132,6 +133,11 @@ class CompanyPage extends StatelessWidget {
                       ListTile(
                         onTap: () async {
                           Get.deleteAll();
+                          SharedPreferences prefs =
+                              await SharedPreferences.getInstance();
+                          prefs.getString("token").toString();
+                          prefs.clear();
+
                           Get.to(LoginScreen());
                         },
                         leading: const Icon(
@@ -304,11 +310,25 @@ class CompanyPage extends StatelessWidget {
                                                         ),
                                                         title: Text(
                                                           getController
-                                                              .otherCompanyJob[
-                                                                  index]
-                                                              .jobPositionName
-                                                              .capitalizeFirst
-                                                              .toString(),
+                                                                      .otherCompanyJob[
+                                                                          index]
+                                                                      .jobPositionName
+                                                                      .toString()
+                                                                      .toLowerCase() ==
+                                                                  "select job"
+                                                              ? getController
+                                                                  .otherCompanyJob[
+                                                                      index]
+                                                                  .toString()
+                                                                  .capitalizeFirst
+                                                                  .toString()
+                                                              : getController
+                                                                  .otherCompanyJob[
+                                                                      index]
+                                                                  .jobPositionName
+                                                                  .toString()
+                                                                  .capitalizeFirst
+                                                                  .toString(),
                                                           style: GoogleFonts
                                                               .roboto(
                                                             fontSize: 24,

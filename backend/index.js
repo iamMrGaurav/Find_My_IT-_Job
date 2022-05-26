@@ -78,10 +78,6 @@ io.on("connection", (socket) => {
       let receiverId = Object.keys(users).find(
         (key) => users[key] === receiver
       );
-      console.log(data);
-
-      console.log(users);
-      console.log(receiverId);
 
       let isReceiverActive = false;
       if (receiverId) isReceiverActive = true;

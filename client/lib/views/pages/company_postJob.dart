@@ -130,9 +130,17 @@ class CompanyPostJob extends StatelessWidget {
                                       ),
                                       ListTile(
                                         title: Text(
-                                          controller
-                                              .postedJobs[index].jobPositionName
-                                              .toString(),
+                                          controller.postedJobs[index]
+                                                      .jobPositionName
+                                                      .toString()
+                                                      .toLowerCase() ==
+                                                  "select job"
+                                              ? controller
+                                                  .postedJobs[index].jobTitle
+                                                  .toString()
+                                              : controller.postedJobs[index]
+                                                  .jobPositionName
+                                                  .toString(),
                                           style: TextStyle(
                                             fontSize: 28,
                                             color: index % 2 == 0

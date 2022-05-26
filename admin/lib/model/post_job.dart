@@ -33,7 +33,7 @@ class PostJob {
     required this.jobTitle,
     required this.jobSpecification,
     required this.membershipName,
-    required this.registeredDate,
+    this.registeredDate,
     required this.languages,
   });
 
@@ -58,7 +58,7 @@ class PostJob {
   dynamic jobTitle;
   dynamic jobSpecification;
   String membershipName;
-  DateTime registeredDate;
+  DateTime? registeredDate;
   List<String> languages;
 
   factory PostJob.fromJson(Map<String, dynamic> json) => PostJob(
@@ -82,7 +82,9 @@ class PostJob {
         jobPositionName: json["job_position_name"],
         jobTitle: json["job_title"],
         jobSpecification: json["job_specification"],
-        membershipName: json["membership_name"],
+        membershipName: json["membership_name"] == null
+            ? "Not register"
+            : json["membership_name"],
         registeredDate: DateTime.parse(json["registered_date"]),
         languages: List<String>.from(json["languages"].map((x) => x)),
       );
@@ -109,7 +111,7 @@ class PostJob {
         "job_title": jobTitle,
         "job_specification": jobSpecification,
         "membership_name": membershipName,
-        "registered_date": registeredDate.toIso8601String(),
+        "registered_date": registeredDate.toString(),
         "languages": List<dynamic>.from(languages.map((x) => x)),
       };
 }

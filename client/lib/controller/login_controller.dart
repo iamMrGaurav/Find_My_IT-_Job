@@ -90,6 +90,7 @@ class LoginController extends GetxController {
       if (data["message"] == "company") {
         email.clear();
         password.clear();
+        LoginController.userID = data["user_id"].toString();
         Get.to(FirstSignUp(
           text: "stats/insert",
         ));

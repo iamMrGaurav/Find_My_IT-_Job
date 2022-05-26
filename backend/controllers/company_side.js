@@ -110,6 +110,7 @@ async function getChatScreen(req, res) {
 }
 
 async function postJob(req, res) {
+  console.log(req.body);
   var job_description = req.body.job_description;
   var posted_date = req.body.posted_date;
   var company_id = req.body.company_id;
@@ -153,6 +154,7 @@ async function postJob(req, res) {
       );
 
       var response = await companyModel.getJobPositionId(req.body.job_position);
+      console.log(response);
       for (i = 0; i < languageList.length; i++) {
         console.log(languageList[i]);
         var serverResponse = await companyModel.inserIntoJobPostSkill(
