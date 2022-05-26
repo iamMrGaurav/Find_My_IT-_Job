@@ -67,7 +67,7 @@ class SeekerProfile {
         bio: json["bio"],
         contactNo: json["contact_no"],
         jobPositionName: json["job_position_name"] == null
-            ? "No data"
+            ? "no data"
             : json["job_position_name"],
         languages: List<String>.from(json["languages"].map((x) => x)),
       );

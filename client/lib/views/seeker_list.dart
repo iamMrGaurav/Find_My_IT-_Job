@@ -6,7 +6,6 @@ import 'package:fmij/controller/company_controller.dart';
 import 'package:fmij/utilities/global.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import 'pages/seeker_profile_page.dart';
 
 class SeekerList extends StatelessWidget {
@@ -191,10 +190,19 @@ class SeekerList extends StatelessWidget {
                                                         getController
                                                                 .searchSeeker
                                                                 .isEmpty
-                                                            ? getController
-                                                                .seekerDerail[
-                                                                    index]
-                                                                .jobPositionName
+                                                            ? (getController
+                                                                        .seekerDerail[
+                                                                            index]
+                                                                        .jobPositionName ==
+                                                                    "no data"
+                                                                ? getController
+                                                                    .seekerDerail[
+                                                                        index]
+                                                                    .jobPosition
+                                                                : getController
+                                                                    .seekerDerail[
+                                                                        index]
+                                                                    .jobPositionName)
                                                             : getController
                                                                 .searchSeeker[
                                                                     index]

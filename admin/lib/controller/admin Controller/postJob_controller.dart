@@ -1,11 +1,10 @@
 import 'dart:convert';
 import 'package:age_calculator/age_calculator.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:fyp_admin/components/constants.dart';
 import 'package:fyp_admin/model/districts.dart';
 import 'package:fyp_admin/model/post_job.dart';
+import 'package:fyp_admin/utilities/global.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
@@ -54,7 +53,7 @@ class PostJobController extends GetxController {
 
   fetchPostJob() async {
     try {
-      var url = "http://localhost:4000/admin_home/fetch_post_job";
+      var url = "$api/admin_home/fetch_post_job";
       var data = await http.get(Uri.parse(url));
       var result = jsonDecode(data.body);
 
@@ -98,7 +97,7 @@ class PostJobController extends GetxController {
 
   getSearchPostJob() async {
     try {
-      var url = "http://localhost:4000/admin_home/get_search_job";
+      var url = "$api/admin_home/get_search_job";
       var data = await http.post(
         Uri.parse(url),
         body: {
@@ -114,7 +113,7 @@ class PostJobController extends GetxController {
 
   getFilterSearchData(district, jobType, date) async {
     try {
-      var url = "http://localhost:4000/admin_home/filter_data";
+      var url = "$api/admin_home/filter_data";
       var data = await http.post(
         Uri.parse(url),
         body: {

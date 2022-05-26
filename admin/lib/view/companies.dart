@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fyp_admin/components/constants.dart';
 import 'package:fyp_admin/controller/admin%20Controller/admin_controller.dart';
+import 'package:fyp_admin/utilities/global.dart';
 import 'package:fyp_admin/view/profile.dart';
 import 'package:get/get.dart';
 
@@ -173,7 +174,7 @@ class Companies extends StatelessWidget {
                                                   leading: CircleAvatar(
                                                     backgroundImage:
                                                         NetworkImage(
-                                                      "http://localhost:4000/${controller.companies[index].imagePath}",
+                                                      "$api/${controller.companies[index].imagePath}",
                                                     ),
                                                   ),
                                                   title: Text(controller
@@ -216,7 +217,7 @@ class Companies extends StatelessWidget {
                                                   leading: CircleAvatar(
                                                     backgroundImage:
                                                         NetworkImage(
-                                                      "http://localhost:4000/${controller.searchText[index].imagePath}",
+                                                      "$api/${controller.searchText[index].imagePath}",
                                                     ),
                                                   ),
                                                   title: Text(controller

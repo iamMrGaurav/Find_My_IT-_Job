@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:fyp_admin/components/constants.dart';
+import 'package:fyp_admin/utilities/global.dart';
 import 'package:fyp_admin/view/companies.dart';
 import 'package:fyp_admin/view/jobPost_page.dart';
 import 'package:fyp_admin/view/seeker_page.dart';
@@ -25,7 +26,7 @@ class Home_WIdget extends StatelessWidget {
   var totalSeekers;
 
   fetchTotalCountValues() async {
-    var url = "http://localhost:4000/admin_home";
+    var url = "$api/admin_home";
     var data = await http.get(Uri.parse(url));
     var response = jsonDecode(data.body);
     totalCompanies = response["data"].toString();

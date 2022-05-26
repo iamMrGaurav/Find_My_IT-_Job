@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fyp_admin/components/constants.dart';
+import 'package:fyp_admin/utilities/global.dart';
 import 'package:fyp_admin/view/admin_screen.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -12,7 +13,7 @@ class Admin_Login extends StatelessWidget {
 
   login(username, password) async {
     // showLloadingScreen();
-    var url = "http://localhost:4000/login/admin";
+    var url = "$api/login/admin";
     var response = await http.post(Uri.parse(url), body: {
       "username": username,
       "password": password,

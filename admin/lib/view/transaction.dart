@@ -3,6 +3,7 @@ import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:fyp_admin/components/constants.dart';
 import 'package:fyp_admin/controller/admin%20Controller/admin_controller.dart';
 import 'package:fyp_admin/model/transaction.dart';
+import 'package:fyp_admin/utilities/global.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -251,10 +252,10 @@ class TransactionPage extends StatelessWidget {
                                                       ),
                                                       Row(
                                                         children: [
-                                                          const CircleAvatar(
+                                                          CircleAvatar(
                                                             backgroundImage:
                                                                 NetworkImage(
-                                                                    "https://avatars.githubusercontent.com/u/64460040?v=4"),
+                                                                    "$api/${controller.searchTransaction.isEmpty ? controller.transaction[index].imagePath : controller.transaction[index].imagePath}"),
                                                           ),
                                                           const SizedBox(
                                                             width: 8,
@@ -392,12 +393,11 @@ class AlertBox extends StatelessWidget {
                   ),
                 ],
               ),
-              const Positioned(
+              Positioned(
                 top: 176,
                 left: 30,
                 child: CircleAvatar(
-                  backgroundImage: NetworkImage(
-                      "https://avatars.githubusercontent.com/u/64460040?v=4"),
+                  backgroundImage: NetworkImage("$api/ ${tran.imagePath}"),
                   radius: 50,
                 ),
               ),

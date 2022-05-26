@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fyp_admin/controller/admin%20Controller/postJob_controller.dart';
 import 'package:fyp_admin/model/post_job.dart';
+import 'package:fyp_admin/utilities/global.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -41,7 +42,7 @@ class JobDetailPage extends StatelessWidget {
                     backgroundColor: Colors.white,
                     radius: 45,
                     backgroundImage: NetworkImage(
-                      "http://10.0.2.2:4000/${profile.imagePath}",
+                      "$api/${profile.imagePath}",
                     ),
                   ),
                   const SizedBox(

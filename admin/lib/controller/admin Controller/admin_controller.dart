@@ -4,6 +4,7 @@ import 'package:fyp_admin/model/company.dart';
 import 'package:fyp_admin/model/jobPosition.dart';
 import 'package:fyp_admin/model/seeker.dart';
 import 'package:fyp_admin/model/transaction.dart';
+import 'package:fyp_admin/utilities/global.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -66,7 +67,7 @@ class Admin_Controller extends GetxController {
 
   fetchCompanyJobPosition() async {
     try {
-      var url = "http://localhost:4000/admin_home/job_position";
+      var url = "$api/admin_home/job_position";
       var data = await http.get(Uri.parse(url));
       var result = jsonDecode(data.body);
       JobPostPosition.value = jobPositionFromJson(jsonEncode(result["data"]));
@@ -78,7 +79,7 @@ class Admin_Controller extends GetxController {
   }
 
   fetchLimitJobPosition(index) async {
-    var url = "http://localhost:4000/admin_home/job_position";
+    var url = "$api/admin_home/job_position";
     var data = await http.post(Uri.parse(url), body: {
       "index": index,
     });
@@ -88,7 +89,7 @@ class Admin_Controller extends GetxController {
   }
 
   addJobPostPosition(JobPosition) async {
-    var url = "http://localhost:4000/admin_home/job_position/add";
+    var url = "$api/admin_home/job_position/add";
     var response = await http.post(
       Uri.parse(url),
       body: {
@@ -157,7 +158,7 @@ class Admin_Controller extends GetxController {
 
   searchSeekerData() async {
     try {
-      var url = "http://localhost:4000/admin_home/search_seeker";
+      var url = "$api/admin_home/search_seeker";
       var data = await http.post(
         Uri.parse(url),
         body: {"userSearchText": searchSeekerText.text},
@@ -173,7 +174,7 @@ class Admin_Controller extends GetxController {
 
   fetchSeekerDetails() async {
     try {
-      var url = "http://localhost:4000/admin_home/get_seekerDetails";
+      var url = "$api/admin_home/get_seekerDetails";
       var data = await http.get(Uri.parse(url));
       var result = jsonDecode(data.body);
       seekerDerail.value = seekerProfileFromJson(jsonEncode(result["data"]));
@@ -185,7 +186,7 @@ class Admin_Controller extends GetxController {
 
   updateJobPosition(jobPositionID, jobPositionName) async {
     try {
-      var url = "http://localhost:4000/admin_home/update_job_position";
+      var url = "$api/admin_home/update_job_position";
       var response = await http.post(Uri.parse(url), body: {
         "job_position_id": jobPositionID.toString(),
         "job_position_name": jobPositionName.toString()
@@ -219,7 +220,7 @@ class Admin_Controller extends GetxController {
 
   deleteJobPosition(jobPositionID) async {
     try {
-      var url = "http://localhost:4000/admin_home/delete_job_position/";
+      var url = "$api/admin_home/delete_job_position/";
 
       var response = await http.post(Uri.parse(url),
           body: {"job_position_id": jobPositionID.toString()});
@@ -256,7 +257,7 @@ class Admin_Controller extends GetxController {
 
   fetchTransaction() async {
     try {
-      var url = "http://localhost:4000/admin_home/get_transaction";
+      var url = "$api/admin_home/get_transaction";
       var data = await http.get(Uri.parse(url));
       var result = jsonDecode(data.body);
 
@@ -279,7 +280,7 @@ class Admin_Controller extends GetxController {
             textColor: Colors.white,
             fontSize: 16.0);
       } else {
-        var url = "http://localhost:4000/admin_home/search_transaction";
+        var url = "$api/admin_home/search_transaction";
         var response = await http.post(Uri.parse(url),
             body: {"company_name": searchTransactionValue.text});
         var data = jsonDecode(response.body);

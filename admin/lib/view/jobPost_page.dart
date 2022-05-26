@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fyp_admin/components/constants.dart';
+import 'package:fyp_admin/utilities/global.dart';
 import 'package:fyp_admin/view/jobDetail_page.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -155,7 +156,7 @@ class _JobPostPageState extends State<JobPostPage> {
                                                               minRadius: 25,
                                                               backgroundImage:
                                                                   NetworkImage(
-                                                                'http://localhost:4000/${controller.postJob[index].imagePath}',
+                                                                '$api/${controller.postJob[index].imagePath}',
                                                               ),
                                                             ),
                                                           ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:fyp_admin/controller/admin%20Controller/admin_controller.dart';
 import 'package:fyp_admin/model/seeker.dart';
+import 'package:fyp_admin/utilities/global.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
@@ -171,7 +172,7 @@ class SeekerPage extends StatelessWidget {
                                                           minRadius: 25,
                                                           backgroundImage:
                                                               NetworkImage(
-                                                            'http://localhost:4000/${controller.searchSeeker.isNotEmpty ? controller.searchSeeker[index].imagePath : controller.seekerDerail[index].imagePath}',
+                                                            '$api/${controller.searchSeeker.isNotEmpty ? controller.searchSeeker[index].imagePath : controller.seekerDerail[index].imagePath}',
                                                           ),
                                                         ),
                                                       ),
@@ -329,8 +330,8 @@ class SeekerDialogBox extends StatelessWidget {
                             backgroundColor: Colors.white,
                             child: CircleAvatar(
                               radius: 50,
-                              backgroundImage: NetworkImage(
-                                  "http://localhost:4000/${profile.imagePath}"),
+                              backgroundImage:
+                                  NetworkImage("$api/${profile.imagePath}"),
                             ),
                           ),
                         ],

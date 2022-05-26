@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:fyp_admin/components/constants.dart';
 import 'package:fyp_admin/model/company.dart';
+import 'package:fyp_admin/utilities/global.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -36,8 +37,7 @@ class Profile extends StatelessWidget {
                 top: 176,
                 left: 30,
                 child: CircleAvatar(
-                  backgroundImage: NetworkImage(
-                      "http://localhost:4000/${company.imagePath}"),
+                  backgroundImage: NetworkImage("$api/${company.imagePath}"),
                   radius: 50,
                 ),
               ),

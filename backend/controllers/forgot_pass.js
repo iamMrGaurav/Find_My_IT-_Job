@@ -125,6 +125,7 @@ async function otpVerification(req, res) {
   let response = req.body;
   let token = response.token;
   let OTP = response.otp;
+  console.log(token, OTP);
 
   if (token && OTP) {
     let data = validateOTP(token, OTP, res);
